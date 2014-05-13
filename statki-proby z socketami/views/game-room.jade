@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  #content
+    #ustawienia
+      form(action='')
+        p
+          ilosc graczy:
+          input(type='number' id='il_graczy' value='' placeholder='1<X<4')
+        p
+          rozmiar planszy:
+          input(type='number' id='rozmiar' value=''  placeholder='5<X<15')
+        p
+          input(type='submit' value='generuj')
+    #main
+      #team1
+      #team2
+    #uwaga
+
+
