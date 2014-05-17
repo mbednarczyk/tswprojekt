@@ -9,14 +9,9 @@ var game = require('./routes/game');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-less(
-    path.join(__dirname, 'less'), {
-        dest: path.join(__dirname, 'public/css'),
-        prefix: '/css'
-    }
-);
-
+app.use(less(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
 
 app.use('/', routes);
 app.use('/game', game);
@@ -30,15 +25,16 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-                message: err.message,
-                error: {}
-            });
+        message: err.message,
+        error: {}
+    });
 });
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + server.address().port);
+    console.log('Express server listening on port ' + server.address().port);
 });
 
-game.listen(server);
+var socket = require('./socket');
+socket.socketServer(app, server);
