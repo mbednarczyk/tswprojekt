@@ -1,4 +1,7 @@
 var ui = {
+    warn: function(a) {
+        return  $('#warn').html(a);
+    },
     alert: function(a) {
         return (window.alert(a));
     },
@@ -12,7 +15,7 @@ var ui = {
         console.log('rooms: ');
         var rooms = '';
         for (var a in data) {
-            rooms += '<li>' + a + '</li>';
+            rooms += '<li>' + a.substring(1) + '</li>';
         }
         $('#rooms').html(rooms);
         console.log(rooms);
@@ -23,7 +26,7 @@ var ui = {
 $(function() {
     $("#newRoom").on('click', function(e) {
         var name = ui.prompt('set new room name');
-        joinRoom(name);
+        addRoom(name);
     });
     $("#rooms").on('click', 'li', function(e) {
         joinRoom($(this).html());

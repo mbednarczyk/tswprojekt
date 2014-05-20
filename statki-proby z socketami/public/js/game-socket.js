@@ -22,3 +22,7 @@ var joinRoom = function(name) {
     console.log('joining room: ' + name);
     socket.emit('joinRoom', name);
 };
+var addRoom = function(name) {
+    console.log('joining room: ' + name);
+    socket.emit('addRoom', name);
+};
