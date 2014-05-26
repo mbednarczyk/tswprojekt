@@ -1,4 +1,20 @@
+var game = function(){
+    var self = this;
+    this.init = function(players){
+        for(var player in players){
+            console.log(this);
+            console.log(self);
+        }
+    };
+};
+var room='';
+var nick='';
 var ui = {
+    setRoom: function(a) {
+        document.title=a+'(room)';
+        room = a;
+        $('#roomName').html(a);
+    },
     warn: function(a) {
         return  $('#warn').html(a);
     },
@@ -12,18 +28,27 @@ var ui = {
         return (window.prompt(a));
     },
     updateRooms: function(data) {
-        console.log('rooms: ');
         var rooms = '';
         for (var a in data) {
             rooms += '<li>' + a.substring(1) + '</li>';
         }
         $('#rooms').html(rooms);
-        console.log(rooms);
-        console.log(data);
     },
+    updateUsers: function(data) {
+        console.log(data);
+        var rooms = '';
+        for (var a in data) {
+            rooms += '<li>' + data[a] + '</li>';
+        }
+        $('#users').html(rooms);
+    }
 };
 
+
 $(function() {
+    $("#joinGame").on('click', function(e) {
+        joinGame(room);
+    });
     $("#newRoom").on('click', function(e) {
         var name = ui.prompt('set new room name');
         addRoom(name);

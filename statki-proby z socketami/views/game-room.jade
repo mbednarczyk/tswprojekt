@@ -1,9 +1,16 @@
 extends game-layout
 
 block content
-  #roomList
-    input#newRoom(type='button' value='new room')
-    ul#rooms
-  #userList
-  #gamemenu
   #gameField
+  #uiWrap
+    #gameMenu
+      #roomName
+      input#joinGame(type='button' value='join')
+    #roomList
+      h3 Room List:
+      input#newRoom(type='button' value='new room')
+      ul#rooms
+    #userList
+      h3 User List:
+      ul#users
+    #warn

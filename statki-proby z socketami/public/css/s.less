@@ -1,52 +1,79 @@
+@bg1:#333;
+@bg2:#666;
+@bg3:#DDD;
+
 *{
-	margin:0; padding:0
+  margin:0; padding:0
 }
 body{
+
+  padding:20px;
+  background:@bg1;
+  #gameField{
+    background:@bg3;
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:67%;
+    td{
+      height:20px;
+      width:20px;
+    }
+
+    td.empty{
+      background:navy;
+    }
+
+    td.statek{
+      background:red;
+    }
+  }
+  #wrap{
+    position: absolute;
+    margin: auto;
+    background:@bg2;
+    top:20px;
+    left:20px;
+    right:20px;
+    bottom:20px;
+
+    #uiWrap{
+      position:absolute;
+      top:0;
+      right:0;
+      bottom:0;
+      width:33%;
+
+      #warn{
+        position:absolute;
+        right:0;
+        bottom:0;
+        width:100%;
+        height:20%;
+        background:yellow;
+      }
+
+      #userList, #roomList, #gameMenu{
+        border-left:2px @bg1 solid;
+        width:33%;
+        background:@bg3;
+        height:80%;
+        float:left;
+        &>*{
+          padding:20px;
+        }
+      }
+    }
+  }
 }
 
-#content{
-	position: absolute;
-	margin: auto;
-	background:#F5F5F5;
-	top:20px;
-	left:20px;
-	right:20px;
-}
 
-#ustawienia{
-	position: absolute;
-	right:50%;;
-}
 
-#main{
-	background:#AAE;
-	position: absolute;
-	left:0;
-	width:0;
-}
 
-#uwaga{
-	position:fixed;
-	top:0;
-	height:20px;
-	background:yellow;
-	margin:auto;
-}
 
 #1.td{
-	height:30px;
-	width:30px;
+  height:30px;
+  width:30px;
 }
 
-td{
-	height:20px;
-	width:20px;
-}
-
-td.empty{
-	background:navy;
-}
-
-td.statek{
-	background:red;
-}

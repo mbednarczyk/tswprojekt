@@ -2,7 +2,6 @@ var socket = io.connect('http://localhost:3000');
 
 //prompt warn accept
 socket.on('uiEvent', function(ev) {
-    console.log(typeof ev.resEvent);
     if (typeof ev.resEvent !== 'undefined') {
         var res = ui[ev.event](ev.data);
         console.log('sending response:' + ev.resEvent + 'res: ' + res);
@@ -25,4 +24,7 @@ var joinRoom = function(name) {
 var addRoom = function(name) {
     console.log('joining room: ' + name);
     socket.emit('addRoom', name);
+};
+var joinGame = function(name) {
+    socket.emit('joinGame', name);
 };
