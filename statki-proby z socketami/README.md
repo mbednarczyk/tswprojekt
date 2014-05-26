@@ -1,6 +1,6 @@
 #odpalanie:
 ```
 npm install
-grunt bower:install
+bower install
 npm start
 ```
