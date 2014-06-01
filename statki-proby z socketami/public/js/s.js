@@ -10,6 +10,14 @@ var game = function(){
 var room='';
 var nick='';
 var ui = {
+    toggleJoin: function(a) {
+        if(a===0){
+            $('#joinGame').hide();
+        }
+        else{
+            $('#joinGame').show();
+        }
+    },
     setRoom: function(a) {
         document.title=a+'(room)';
         room = a;

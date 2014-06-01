@@ -27,6 +27,8 @@ exports.socketServer = function(app, server) {
                     teams[0].splice(teams[0].indexOf(name), 1);
                     teams[1].splice(teams[1].indexOf(name), 1);
                     playerCount-=1;
+                    this.status = 'not started';
+                    toggleJoin(self.name,1);
                 } 
             },
             join: function(name){
@@ -39,6 +41,10 @@ exports.socketServer = function(app, server) {
                         this.teams[0].push(name);
                     }
                     playerCount+=1;
+                    if(playerCount===4){
+                        this.status = 'full';
+                        toggleJoin(self.name,0);
+                    }
                     console.log(this);
                 }
                 else{
@@ -133,8 +139,16 @@ exports.socketServer = function(app, server) {
         return name;
     };
 
+    var toggleJoin = function(room, val){
+        io.sockets.in(room).emit('uiEvent', {
+            event: 'toggleJoin',
+            data: val
+        });
+    };
+
     Rooms['lobby'] = (new Room('lobby'));
     io.sockets.on('connection', function(socket) {
+        toggleJoin('lobby',0);
         setLogin(socket);
         updateRooms('', socket);
         socket.on('setLogin', function(data) {
