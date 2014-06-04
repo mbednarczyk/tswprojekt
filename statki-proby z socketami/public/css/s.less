@@ -1,6 +1,7 @@
 @bg1:#333;
 @bg2:#666;
 @bg3:#DDD;
+@cl4:navy;
 
 *{
   margin:0; padding:0
@@ -17,16 +18,44 @@ body{
     bottom:0;
     width:67%;
     td{
+      margin:2px;
       height:20px;
       width:20px;
+      border:2px solid @bg1;
     }
 
     td.empty{
-      background:navy;
+      background:@cl4;
     }
 
     td.statek{
+      background:yellow;
+    }
+
+    td.trafiony{
       background:red;
+    }
+    .team{
+      padding:20px;
+      display:inline-block;
+      height:50%;
+      width:50%;
+    }
+    .map{
+      border: 2px solid @cl4;
+
+    }
+    .team:not(.myTeam){
+      td:hover{
+        background:red;
+      }
+    }
+    .myMap{ 
+      td:hover{
+        background:@cl4;
+        border:1px solid red;
+      }
+
     }
   }
   #wrap{
@@ -47,13 +76,16 @@ body{
 
       #warn{
         position:absolute;
+        overflow:scroll;
         right:0;
         bottom:0;
         width:100%;
         height:20%;
         background:yellow;
       }
-
+      ul{
+        list-style-type: none;
+      }
       #userList, #roomList, #gameMenu{
         border-left:2px @bg1 solid;
         width:33%;
@@ -61,19 +93,17 @@ body{
         height:80%;
         float:left;
         &>*{
-          padding:20px;
+          padding:10px;
         }
+      }
+      #roomList li:hover{
+        color:blue;
       }
     }
   }
 }
 
-
-
-
-
-#1.td{
-  height:30px;
-  width:30px;
+#team1{
+  position: absolute;
 }
 

@@ -1,7 +1,8 @@
 var express = require('express');
 var path = require('path');
 var less = require('less-middleware');
-
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
 var app = express();
 var routes = require('./routes/index');
@@ -11,7 +12,9 @@ var game = require('./routes/game');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(cookieParser());
 app.use(less(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components/jquery/dist')));
